@@ -1,0 +1,10 @@
+---
+socialhome_os_user: socialhome
+socialhome_domain: socialhome.local
+socialhome_db_name: socialhome
+socialhome_db_user: socialhome
+socialhome_db_password: socialhome
+socialhome_uwsgi_address: 127.0.0.1:31452/
+socialhome_secret_key:
+
+socialhome_letsencrypt: true

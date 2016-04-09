@@ -1,0 +1,5 @@
+---
+- name: restart apache
+  service: name=apache2 state=restarted
+- name: restart uwsgi
+  service: name="{{ socialhome_domain }}" state=restarted

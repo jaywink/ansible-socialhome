@@ -1,0 +1,19 @@
+---
+- name: Apache uwsgi module deps
+  apt: name=libapache2-mod-proxy-uwsgi
+  notify:
+    - restart apache
+- name: Apache modules
+  apache2_module: state=present name={{ item }}
+  with_items:
+    - proxy_uwsgi
+    - proxy
+    - ssl
+  notify:
+    - restart apache
+- name: Apache site
+  template: dest=/etc/apache2/sites-available/{{ socialhome_domain }}.conf src=apache.conf
+- name: Enable site
+  command: a2ensite {{ socialhome_domain }}
+  notify:
+    - restart apache

@@ -1,0 +1,10 @@
+---
+- name: uWSGI log path
+  file: path=/home/{{ socialhome_os_user }}/logs state=directory
+  become_user: "{{ socialhome_os_user }}"
+- name: uWSGI ini file
+  template: src=uwsgi.ini dest=/home/{{ socialhome_os_user }}/uwsgi.ini
+  become_user: "{{ socialhome_os_user }}"
+- name: uWSGI upstart config
+  template: src=uwsgi_upstart.conf dest=/etc/init/{{ socialhome_domain }}.conf
+
