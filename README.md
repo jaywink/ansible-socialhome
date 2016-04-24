@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/jaywink/ansible-socialhome.png?label=ready&title=Ready)](https://waffle.io/jaywink/ansible-socialhome)
 Role Name
 =========
 
