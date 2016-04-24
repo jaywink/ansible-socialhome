@@ -4,7 +4,7 @@
 - name: Make sure venv directory is owned by user
   file: path=/home/{{ socialhome_os_user }}/venv owner="{{ socialhome_os_user }}" group="{{ socialhome_os_user }}" recurse=yes state=directory
 - name: Get latest application code
-  git: accept_hostkey=yes dest=/home/{{ socialhome_os_user }}/socialhome repo=https://github.com/jaywink/socialhome.git force=yes
+  git: accept_hostkey=yes dest=/home/{{ socialhome_os_user }}/socialhome repo=https://github.com/jaywink/socialhome.git force=yes version=master
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
@@ -14,6 +14,11 @@
     - restart uwsgi
 - name: Install app requirements
   pip: requirements=/home/{{ socialhome_os_user }}/socialhome/requirements/production.txt virtualenv=/home/{{ socialhome_os_user }}/venv
+  become_user: "{{ socialhome_os_user }}"
+  notify:
+    - restart uwsgi
+- name: Ensure Social-Federation is upgraded
+  pip: name='git+https://github.com/jaywink/social-federation.git@master#egg=Social-Federation' extra_args="-U" virtualenv=/home/{{ socialhome_os_user }}/venv
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
