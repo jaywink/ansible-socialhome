@@ -41,7 +41,7 @@
   bower: path=/home/{{ socialhome_os_user }}/socialhome
   become_user: "{{ socialhome_os_user }}"
 - name: Grunt things
-  command: chdir=/home/{{ socialhome_os_user }} ./node_modules/.bin/grunt build
+  command: chdir=/home/{{ socialhome_os_user }}/socialhome ./node_modules/.bin/grunt build
   become_user: "{{ socialhome_os_user }}"
 
 - name: Collect statics
