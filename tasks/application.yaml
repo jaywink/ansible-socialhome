@@ -8,6 +8,10 @@
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
+- name: Stop socialhome uWSGI
+  service: name="{{ socialhome_domain }}" state=stopped
+  notify:
+    - restart uwsgi
 - name: Install app OS requirements
   shell: chdir=/home/{{ socialhome_os_user }}/socialhome/ executable=/bin/bash ./install_os_dependencies.sh install
   notify:
