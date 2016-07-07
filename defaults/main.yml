@@ -13,3 +13,10 @@ socialhome_redis_db: 0
 socialhome_root_profile:
 socialhome_secret_key:
 socialhome_uwsgi_address: 127.0.0.1:31452/
+
+# Warning! Don't activate in production!
+socialhome_debug: false
+
+# Disable emails by setting to true
+# Real production sites require email for account confirmation!
+socialhome_disable_email: false
