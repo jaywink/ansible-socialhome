@@ -12,3 +12,4 @@
     state: present
     line: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
     regexp: "^github\\.com"
+  become_user: "{{ socialhome_os_user }}"
