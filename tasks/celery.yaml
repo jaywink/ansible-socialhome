@@ -1,0 +1,5 @@
+---
+- name: Celery upstart config
+  template: src=celery_upstart.conf dest=/etc/init/{{ socialhome_domain }}-celery.conf
+  notify:
+    - restart celery

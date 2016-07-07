@@ -53,3 +53,9 @@
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
+
+- name: Install venv exec script
+  template: src=socialhome_exec.sh dest=/home/{{ socialhome_os_user}}/socialhome/socialhome_exec.sh mode=0750
+  become_user: "{{ socialhome_os_user }}"
+  notify:
+    - restart celery

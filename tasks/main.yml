@@ -6,3 +6,4 @@
 - include: postgresql.yaml
 - include: python.yaml
 - include: application.yaml
+- include: celery.yaml
