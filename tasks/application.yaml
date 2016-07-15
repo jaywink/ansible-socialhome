@@ -4,7 +4,7 @@
 - name: Make sure venv directory is owned by user
   file: path=/home/{{ socialhome_os_user }}/venv owner="{{ socialhome_os_user }}" group="{{ socialhome_os_user }}" recurse=yes state=directory
 - name: Get latest application code
-  git: accept_hostkey=yes dest=/home/{{ socialhome_os_user }}/socialhome repo=https://github.com/jaywink/socialhome.git force=yes version=master
+  git: accept_hostkey=yes dest=/home/{{ socialhome_os_user }}/socialhome repo="{{ socialhome_repo }}" force=yes version="{{ socialhome_repo_version }}"
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
