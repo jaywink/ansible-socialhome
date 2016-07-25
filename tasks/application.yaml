@@ -8,34 +8,38 @@
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
+    - restart celery
 - name: Stop socialhome uWSGI
   service: name="{{ socialhome_domain }}" state=stopped
   notify:
     - restart uwsgi
+- name: Stop socialhome Celery
+  service: name="{{ socialhome_domain }}-celery" state=stopped
+  notify:
+    - restart celery
 - name: Install app OS requirements
   shell: chdir=/home/{{ socialhome_os_user }}/socialhome/ executable=/bin/bash ./install_os_dependencies.sh install
   notify:
     - restart uwsgi
+    - restart celery
 - name: Install app requirements
   pip: requirements=/home/{{ socialhome_os_user }}/socialhome/requirements/production.txt virtualenv=/home/{{ socialhome_os_user }}/venv
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
-- name: Ensure Social-Federation is upgraded
-  pip: name='git+https://github.com/jaywink/social-federation.git@master#egg=Social-Federation' extra_args="-U" virtualenv=/home/{{ socialhome_os_user }}/venv
-  become_user: "{{ socialhome_os_user }}"
-  notify:
-    - restart uwsgi
+    - restart celery
 - name: Create env file
   template: dest=/home/{{ socialhome_os_user }}/socialhome/env.local src=env.local mode=0600
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
+    - restart celery
 - name: Migrate db
   django_manage: app_path=/home/{{ socialhome_os_user }}/socialhome command="migrate --load-env" virtualenv=/home/{{ socialhome_os_user }}/venv
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
+    - restart celery
 
 # Web stuff
 - name: Do NPM install
