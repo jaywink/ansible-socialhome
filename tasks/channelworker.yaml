@@ -1,0 +1,5 @@
+---
+- name: Channel worker upstart config
+  template: src=worker_upstart.conf dest=/etc/init/{{ socialhome_domain }}-worker.conf
+  notify:
+    - restart channelworker

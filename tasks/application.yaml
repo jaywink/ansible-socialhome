@@ -9,6 +9,8 @@
   notify:
     - restart uwsgi
     - restart celery
+    - restart daphne
+    - restart channelworker
 - name: Stop socialhome uWSGI
   service: name="{{ socialhome_domain }}" state=stopped
   notify:
@@ -22,24 +24,32 @@
   notify:
     - restart uwsgi
     - restart celery
+    - restart daphne
+    - restart channelworker
 - name: Install app requirements
   pip: requirements=/home/{{ socialhome_os_user }}/socialhome/requirements/production.txt virtualenv=/home/{{ socialhome_os_user }}/venv
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
     - restart celery
+    - restart daphne
+    - restart channelworker
 - name: Create env file
   template: dest=/home/{{ socialhome_os_user }}/socialhome/env.local src=env.local mode=0600
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
     - restart celery
+    - restart daphne
+    - restart channelworker
 - name: Migrate db
-  django_manage: app_path=/home/{{ socialhome_os_user }}/socialhome command="migrate --load-env" virtualenv=/home/{{ socialhome_os_user }}/venv
+  django_manage: app_path=/home/{{ socialhome_os_user }}/socialhome command="migrate --load-env --noinput" virtualenv=/home/{{ socialhome_os_user }}/venv
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
     - restart celery
+    - restart daphne
+    - restart channelworker
 
 # Web stuff
 - name: Do NPM install
@@ -63,3 +73,5 @@
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart celery
+    - restart daphne
+    - restart channelworker

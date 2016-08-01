@@ -1,0 +1,5 @@
+---
+- name: Daphne upstart config
+  template: src=daphne_upstart.conf dest=/etc/init/{{ socialhome_domain }}-daphne.conf
+  notify:
+    - restart daphne

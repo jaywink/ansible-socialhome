@@ -5,3 +5,7 @@
   service: name="{{ socialhome_domain }}" state=restarted
 - name: restart celery
   service: name="{{ socialhome_domain }}-celery" state=restarted
+- name: restart daphne
+  service: name="{{ socialhome_domain }}-daphne" state=restarted
+- name: restart channelworker
+  service: name="{{ socialhome_domain }}-worker" state=restarted
