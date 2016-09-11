@@ -23,3 +23,10 @@ socialhome_debug: false
 # Disable emails by setting to true
 # Real production sites require email for account confirmation!
 socialhome_disable_email: false
+
+# Opbeat
+# Set to true and add all the relevant info if required
+socialhome_opbeat: false
+socialhome_opbeat_organization_id:
+socialhome_opbeat_app_id:
+socialhome_opbeat_token:
