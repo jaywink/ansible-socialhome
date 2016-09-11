@@ -43,7 +43,7 @@
     - restart daphne
     - restart channelworker
 - name: Migrate db
-  django_manage: app_path=/home/{{ socialhome_os_user }}/socialhome command="migrate --load-env --noinput" virtualenv=/home/{{ socialhome_os_user }}/venv
+  django_manage: app_path=/home/{{ socialhome_os_user }}/socialhome command="migrate --noinput" virtualenv=/home/{{ socialhome_os_user }}/venv
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
@@ -63,7 +63,7 @@
   become_user: "{{ socialhome_os_user }}"
 
 - name: Collect statics
-  django_manage: app_path=/home/{{ socialhome_os_user }}/socialhome command="collectstatic --load-env --no-input" virtualenv=/home/{{ socialhome_os_user }}/venv
+  django_manage: app_path=/home/{{ socialhome_os_user }}/socialhome command="collectstatic --no-input" virtualenv=/home/{{ socialhome_os_user }}/venv
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
