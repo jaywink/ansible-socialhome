@@ -27,7 +27,7 @@
     - restart daphne
     - restart channelworker
 - name: Install app requirements
-  pip: requirements=/home/{{ socialhome_os_user }}/socialhome/requirements/production.txt virtualenv=/home/{{ socialhome_os_user }}/venv
+  pip: requirements=/home/{{ socialhome_os_user }}/socialhome/requirements/production.txt virtualenv=/home/{{ socialhome_os_user }}/venv extra_args="-U"
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
