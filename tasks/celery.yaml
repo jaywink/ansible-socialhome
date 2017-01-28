@@ -1,5 +1,7 @@
 ---
-- name: Celery upstart config
-  template: src=celery_upstart.conf dest=/etc/init/{{ socialhome_domain }}-celery.conf
-  notify:
-    - restart celery
+# TODO: remove these old legacy upstart jobs once removal deployed
+- name: Stop celery upstart job
+  service: name="{{ socialhome_domain }}-celery" state=stopped
+  ignore_errors: True
+- name: Remove celery upstart job
+  file: path=/etc/init/{{ socialhome_domain }}-celery.conf state=absent

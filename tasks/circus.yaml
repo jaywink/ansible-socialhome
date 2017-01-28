@@ -1,0 +1,5 @@
+---
+- name: Set up circus upstart job
+  template: dest=/etc/init/{{ socialhome_domain }}-circus.conf src=circus_upstart.conf
+  notify:
+    - restart circus

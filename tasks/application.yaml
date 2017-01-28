@@ -8,22 +8,22 @@
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
-    - restart celery
+    - restart circus
     - restart daphne
     - restart channelworker
 - name: Stop socialhome uWSGI
   service: name="{{ socialhome_domain }}" state=stopped
   notify:
     - restart uwsgi
-- name: Stop socialhome Celery
-  service: name="{{ socialhome_domain }}-celery" state=stopped
+- name: Stop socialhome Circus
+  service: name="{{ socialhome_domain }}-circus" state=stopped
   notify:
-    - restart celery
+    - restart circus
 - name: Install app OS requirements
   shell: chdir=/home/{{ socialhome_os_user }}/socialhome/ executable=/bin/bash ./install_os_dependencies.sh install
   notify:
     - restart uwsgi
-    - restart celery
+    - restart circus
     - restart daphne
     - restart channelworker
 - name: Install app requirements
@@ -31,7 +31,7 @@
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
-    - restart celery
+    - restart circus
     - restart daphne
     - restart channelworker
 - name: Create env file
@@ -39,7 +39,7 @@
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
-    - restart celery
+    - restart circus
     - restart daphne
     - restart channelworker
 - name: Migrate db
@@ -47,7 +47,7 @@
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart uwsgi
-    - restart celery
+    - restart circus
     - restart daphne
     - restart channelworker
 
@@ -72,6 +72,6 @@
   template: src=socialhome_exec.sh dest=/home/{{ socialhome_os_user}}/socialhome/socialhome_exec.sh mode=0750
   become_user: "{{ socialhome_os_user }}"
   notify:
-    - restart celery
+    - restart circus
     - restart daphne
     - restart channelworker
