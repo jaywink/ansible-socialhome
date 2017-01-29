@@ -12,3 +12,4 @@
   environment:
     DJANGO_SETTINGS_MODULE: config.settings.production
 - include: celery.yaml
+- include: circus_ini.yaml

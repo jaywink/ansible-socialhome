@@ -31,3 +31,7 @@ socialhome_opbeat: false
 socialhome_opbeat_organization_id:
 socialhome_opbeat_app_id:
 socialhome_opbeat_token:
+
+# Circus / override to allow multiple Circus instances to run
+socialhome_circus_endpoint_port: 5555
+socialhome_circus_pubsub_endpoint_port: 5556

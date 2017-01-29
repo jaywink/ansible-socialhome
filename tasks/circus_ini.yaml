@@ -1,0 +1,26 @@
+---
+# Tune Circus endpoints
+- name: Configure circus endpoint
+  lineinfile:
+    dest: /home/{{ socialhome_os_user }}/socialhome/config/circus.ini
+    state: present
+    line: "endpoint = tcp://127.0.0.1:{{ socialhome_circus_endpoint_port }}\n"
+    insertbefore: BOF
+  notify:
+    - restart circus
+- name: Configure circus pubsub endpoint
+  lineinfile:
+    dest: /home/{{ socialhome_os_user }}/socialhome/config/circus.ini
+    state: present
+    line: "pubsub_endpoint = tcp://127.0.0.1:{{ socialhome_circus_pubsub_endpoint_port }}"
+    insertbefore: BOF
+  notify:
+    - restart circus
+- name: Add circus endpoint configuration
+  lineinfile:
+    dest: /home/{{ socialhome_os_user }}/socialhome/config/circus.ini
+    state: present
+    line: "[circus]"
+    insertbefore: BOF
+  notify:
+    - restart circus
