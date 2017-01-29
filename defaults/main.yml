@@ -7,6 +7,7 @@ socialhome_db_name: socialhome
 socialhome_db_password: socialhome
 socialhome_db_port: 5432
 socialhome_db_user: socialhome
+socialhome_disable_registrations: true
 socialhome_domain: socialhome.local
 socialhome_https: true
 socialhome_os_user: socialhome
