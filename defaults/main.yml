@@ -42,3 +42,4 @@ socialhome_email_host: localhost
 socialhome_email_port: 587
 socialhome_email_host_user:
 socialhome_email_host_password:
+socialhome_email_from: "Socialhome <noreply@socialhome.local>"
