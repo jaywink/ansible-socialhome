@@ -22,10 +22,6 @@ socialhome_uwsgi_address: 127.0.0.1:31452/
 # Warning! Don't activate in production!
 socialhome_debug: false
 
-# Disable emails by setting to true
-# Real production sites require email for account confirmation!
-socialhome_disable_email: false
-
 # Opbeat
 # Set to true and add all the relevant info if required
 socialhome_opbeat: false
@@ -36,3 +32,13 @@ socialhome_opbeat_token:
 # Circus / override to allow multiple Circus instances to run
 socialhome_circus_endpoint_port: 5555
 socialhome_circus_pubsub_endpoint_port: 5556
+
+# Email
+# Set backend to "smtp" for smtp emails - currently only one supported
+# If not set to "smtp", emails will just print in console
+# Mails use TLS by default
+socialhome_email_backend:
+socialhome_email_host: localhost
+socialhome_email_port: 587
+socialhome_email_host_user:
+socialhome_email_host_password:
