@@ -7,6 +7,7 @@
 - include: apache.yaml
 - include: postgresql.yaml
 - include: python.yaml
+  become_user: "{{ socialhome_os_user }}"
 - include: circus.yaml
 - include: application.yaml
   environment:

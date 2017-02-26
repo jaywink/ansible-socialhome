@@ -25,3 +25,6 @@
     # uWSGI
     - build-essential
     - python-dev
+    # Virtualenv
+    - python-virtualenv
+    - python3-setuptools
