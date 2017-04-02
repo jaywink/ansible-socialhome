@@ -53,10 +53,10 @@
 
 # Web stuff
 - name: Do NPM install
-  npm: path=/home/{{ socialhome_os_user }}/socialhome
+  npm: path=/home/{{ socialhome_os_user }}/socialhome state=latest
   become_user: "{{ socialhome_os_user }}"
 - name: Do bowering
-  bower: path=/home/{{ socialhome_os_user }}/socialhome
+  bower: path=/home/{{ socialhome_os_user }}/socialhome state=latest
   become_user: "{{ socialhome_os_user }}"
 - name: Grunt things
   command: chdir=/home/{{ socialhome_os_user }}/socialhome ./node_modules/.bin/grunt build
