@@ -28,3 +28,5 @@
     # Virtualenv
     - python-virtualenv
     - python3-setuptools
+    # Redis
+    - redis-server
