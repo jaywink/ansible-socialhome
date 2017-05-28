@@ -1,11 +1,5 @@
 ---
 - name: restart apache
   service: name=apache2 state=restarted
-- name: restart uwsgi
-  service: name="{{ socialhome_domain }}" state=restarted
 - name: restart circus
   service: name="{{ socialhome_domain }}-circus" state=restarted
-- name: restart daphne
-  service: name="{{ socialhome_domain }}-daphne" state=restarted
-- name: restart channelworker
-  service: name="{{ socialhome_domain }}-worker" state=restarted

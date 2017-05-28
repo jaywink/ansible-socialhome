@@ -1,5 +1,7 @@
 ---
-- name: Daphne upstart config
-  template: src=daphne_upstart.conf dest=/etc/init/{{ socialhome_domain }}-daphne.conf
-  notify:
-    - restart daphne
+# TODO: remove these old legacy upstart jobs at near future
+- name: Stop Daphne upstart job
+  service: name="{{ socialhome_domain }}-daphne" state=stopped
+  ignore_errors: True
+- name: Remove Daphne upstart job
+  file: path=/etc/init/{{ socialhome_domain }}-daphne.conf state=absent

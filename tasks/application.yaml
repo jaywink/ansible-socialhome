@@ -7,14 +7,13 @@
   git: accept_hostkey=yes dest=/home/{{ socialhome_os_user }}/socialhome repo="{{ socialhome_repo }}" force=yes version="{{ socialhome_repo_version }}"
   become_user: "{{ socialhome_os_user }}"
   notify:
-    - restart uwsgi
     - restart circus
-    - restart daphne
-    - restart channelworker
+
+# TODO remove legacy stop in future
 - name: Stop socialhome uWSGI
   service: name="{{ socialhome_domain }}" state=stopped
-  notify:
-    - restart uwsgi
+  ignore_errors: True
+
 - name: Stop socialhome Circus
   service: name="{{ socialhome_domain }}-circus" state=stopped
   notify:
@@ -22,34 +21,22 @@
 - name: Install app OS requirements
   shell: chdir=/home/{{ socialhome_os_user }}/socialhome/ executable=/bin/bash ./install_os_dependencies.sh install
   notify:
-    - restart uwsgi
     - restart circus
-    - restart daphne
-    - restart channelworker
 - name: Install app requirements
   pip: requirements=/home/{{ socialhome_os_user }}/socialhome/requirements/production.txt virtualenv=/home/{{ socialhome_os_user }}/venv extra_args="-U"
   become_user: "{{ socialhome_os_user }}"
   notify:
-    - restart uwsgi
     - restart circus
-    - restart daphne
-    - restart channelworker
 - name: Create env file
   template: dest=/home/{{ socialhome_os_user }}/socialhome/env.local src=env.local mode=0600
   become_user: "{{ socialhome_os_user }}"
   notify:
-    - restart uwsgi
     - restart circus
-    - restart daphne
-    - restart channelworker
 - name: Migrate db
   django_manage: app_path=/home/{{ socialhome_os_user }}/socialhome command="migrate --noinput" virtualenv=/home/{{ socialhome_os_user }}/venv
   become_user: "{{ socialhome_os_user }}"
   notify:
-    - restart uwsgi
     - restart circus
-    - restart daphne
-    - restart channelworker
 
 # Web stuff
 - name: Do NPM install
@@ -66,12 +53,4 @@
   django_manage: app_path=/home/{{ socialhome_os_user }}/socialhome command="collectstatic --no-input" virtualenv=/home/{{ socialhome_os_user }}/venv
   become_user: "{{ socialhome_os_user }}"
   notify:
-    - restart uwsgi
-
-- name: Install venv exec script
-  template: src=socialhome_exec.sh dest=/home/{{ socialhome_os_user}}/socialhome/socialhome_exec.sh mode=0750
-  become_user: "{{ socialhome_os_user }}"
-  notify:
     - restart circus
-    - restart daphne
-    - restart channelworker

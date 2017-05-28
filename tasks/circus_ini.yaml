@@ -24,3 +24,11 @@
     insertbefore: BOF
   notify:
     - restart circus
+
+# Daphne
+- name: Set correct Daphne port
+  lineinfile:
+    dest: /home/{{ socialhome_os_user }}/socialhome/config/circus.ini
+    state: present
+    line: "cmd = daphne -p {{ socialhome_daphne_port }} config.asgi:channel_layer"
+    regexp: "cmd = daphne"
