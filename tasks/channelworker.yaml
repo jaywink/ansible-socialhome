@@ -1,7 +1,0 @@
----
-# TODO: remove these old legacy upstart jobs at near future
-- name: Stop channel worker upstart job
-  service: name="{{ socialhome_domain }}-worker" state=stopped
-  ignore_errors: True
-- name: Remove channel worker upstart job
-  file: path=/etc/init/{{ socialhome_domain }}-worker.conf state=absent

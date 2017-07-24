@@ -9,11 +9,6 @@
   notify:
     - restart circus
 
-# TODO remove legacy stop in future
-- name: Stop socialhome uWSGI
-  service: name="{{ socialhome_domain }}" state=stopped
-  ignore_errors: True
-
 - name: Stop socialhome Circus
   service: name="{{ socialhome_domain }}-circus" state=stopped
   notify:

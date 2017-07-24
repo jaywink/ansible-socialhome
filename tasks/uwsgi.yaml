@@ -9,10 +9,3 @@
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart circus
-
-# TODO: remove these old legacy upstart jobs at near future
-- name: Stop uwsgi upstart job
-  service: name="{{ socialhome_domain }}" state=stopped
-  ignore_errors: True
-- name: Remove uwsgi upstart job
-  file: path=/etc/init/{{ socialhome_domain }}.conf state=absent
