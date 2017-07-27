@@ -33,6 +33,15 @@
   notify:
     - restart circus
 
+# Search index if first time
+- name: Check for existing search index
+  stat: path=/home/{{ socialhome_os_user }}/socialhome/var/whoosh
+  register: _whoosh
+- name: Create initial search index
+  django_manage: app_path=/home/{{ socialhome_os_user }}/socialhome command="rebuild_index --noinput" virtualenv=/home/{{ socialhome_os_user }}/venv
+  become_user: "{{ socialhome_os_user }}"
+  when: not _whoosh.stat.exists
+
 # Web stuff
 - name: Do NPM install
   npm: path=/home/{{ socialhome_os_user }}/socialhome state=latest
