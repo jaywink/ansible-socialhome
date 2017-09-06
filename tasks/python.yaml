@@ -2,8 +2,9 @@
 - name: Create virtualenv
   # We do this here since Ansible only has virtualenv_python in 2.x
   command: creates=/home/{{ socialhome_os_user }}/venv virtualenv -p python3.4 /home/{{ socialhome_os_user }}/venv
-- name: Update pip
-  pip: name=pip state=latest virtualenv=/home/{{ socialhome_os_user }}/venv
-- name: Update setuptools
-  pip: name=setuptools state=latest virtualenv=/home/{{ socialhome_os_user }}/venv
-
+- name: Update pip, setuptools and pip-tools
+  pip: name={{ item }} state=latest virtualenv=/home/{{ socialhome_os_user }}/venv
+  with_items:
+    - pip
+    - setuptools==30.4
+    - pip-tools
