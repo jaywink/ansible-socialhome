@@ -14,7 +14,7 @@
   notify:
     - restart circus
 - name: Install app OS requirements
-  shell: chdir=/home/{{ socialhome_os_user }}/socialhome/ executable=/bin/bash ./install_os_dependencies.sh install
+  shell: chdir=/home/{{ socialhome_os_user }}/socialhome/ executable=/bin/bash ./install_ubuntu_dependencies.sh install
   notify:
     - restart circus
 
