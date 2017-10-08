@@ -1,0 +1,21 @@
+---
+- name: Download loggly config script
+  get_url:
+    url: https://www.loggly.com/install/configure-linux.sh
+    dest: /tmp
+    mode: 0755
+
+- name: Execute loggly config script
+  shell: /bin/bash configure-linux.sh -a {{ socialhome_loggly_account }} -u {{ socialhome_loggly_username }} -p {{ socialhome_loggly_password }} -s
+  args:
+    chdir: /tmp
+    creates: /etc/rsyslog.d/22-loggly.conf
+  notify:
+    - restart rsyslog
+
+- name: Configure rsyslog for Loggly
+  template:
+    src: 21-django.conf
+    dest: /etc/rsyslog.d/21-django.conf
+  notify:
+    - restart rsyslog

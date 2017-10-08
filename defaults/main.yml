@@ -46,3 +46,10 @@ socialhome_email_from: "noreply@socialhome.local"
 
 # Statistics
 socialhome_statistics: true
+
+# Loggly
+socialhome_loggly: false
+socialhome_loggly_account:
+socialhome_loggly_password:
+socialhome_loggly_username:
+socialhome_loggly_token:
