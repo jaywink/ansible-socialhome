@@ -48,8 +48,9 @@
 - name: Do NPM install
   npm: path=/home/{{ socialhome_os_user }}/socialhome state=latest
   become_user: "{{ socialhome_os_user }}"
+
 - name: Do bowering
-  bower: path=/home/{{ socialhome_os_user }}/socialhome state=latest
+  bower: path=/home/{{ socialhome_os_user }}/socialhome state=latest relative_execpath=node_modules/.bin
   become_user: "{{ socialhome_os_user }}"
 
 - name: Webpack
