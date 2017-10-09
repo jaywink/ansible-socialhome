@@ -3,3 +3,5 @@
   service: name=apache2 state=restarted
 - name: restart circus
   service: name="{{ socialhome_domain }}-circus" state=restarted
+- name: restart rsyslog
+  service: name=rsyslog state=restarted

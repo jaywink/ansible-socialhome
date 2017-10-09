@@ -46,3 +46,15 @@ socialhome_email_from: "noreply@socialhome.local"
 
 # Statistics
 socialhome_statistics: true
+
+# Logging
+# Set to either file or syslog
+socialhome_log_target: file
+# Only used if above is syslog
+# Set to either DEBUG, INFO, WARNING, ERROR
+socialhome_syslog_level: INFO
+
+# Loggly
+# Only relevant if socialhome_log_target is syslog
+socialhome_loggly: false
+socialhome_loggly_token:

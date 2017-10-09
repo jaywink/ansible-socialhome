@@ -11,3 +11,5 @@
   environment:
     DJANGO_SETTINGS_MODULE: config.settings.production
 - include: circus_ini.yaml
+- include: loggly.yaml
+  when: socialhome_loggly and socialhome_log_target == "syslog"

@@ -1,0 +1,38 @@
+---
+- name: Rsyslog TLS package
+  apt: name=rsyslog-gnutls state=present
+
+- name: Configure rsyslog for Loggly
+  template:
+    src: 22-loggly.conf
+    dest: /etc/rsyslog.d/22-loggly.conf
+  notify:
+    - restart rsyslog
+
+- name: Configure rsyslog for Django
+  template:
+    src: 21-django.conf
+    dest: /etc/rsyslog.d/21-django.conf
+  notify:
+    - restart rsyslog
+
+- name: Max message size of rsyslog
+  lineinfile:
+    dest: /etc/rsyslog.conf
+    state: present
+    line: '$MaxMessageSize 64k'
+    insertbefore: BOF
+  notify:
+    - restart rsyslog
+
+- name: Create ca.d directory
+  file:
+    path: /etc/rsyslog.d/keys/ca.d
+    state: directory
+
+- name: Copy Loggly cert
+  template:
+    src: loggly.crt
+    dest: /etc/rsyslog.d/keys/ca.d/logs-01.loggly.com_sha12.crt
+  notify:
+    - restart rsyslog
