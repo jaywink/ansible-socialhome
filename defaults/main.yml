@@ -58,3 +58,4 @@ socialhome_syslog_level: INFO
 # Only relevant if socialhome_log_target is syslog
 socialhome_loggly: false
 socialhome_loggly_token:
+socialhome_syslog_facility: local7

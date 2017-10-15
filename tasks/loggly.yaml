@@ -9,10 +9,10 @@
   notify:
     - restart rsyslog
 
-- name: Configure rsyslog for Django
+- name: Configure rsyslog for Socialhome
   template:
     src: 21-django.conf
-    dest: /etc/rsyslog.d/21-django.conf
+    dest: /etc/rsyslog.d/21-{{ socialhome_domain }}.conf
   notify:
     - restart rsyslog
 
