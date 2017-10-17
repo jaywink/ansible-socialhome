@@ -25,7 +25,7 @@
     - restart circus
 
 - name: Create env file
-  template: dest=/home/{{ socialhome_os_user }}/socialhome/env.local src=env.local mode=0600
+  template: dest=/home/{{ socialhome_os_user }}/socialhome/.env src=env mode=0600
   become_user: "{{ socialhome_os_user }}"
   notify:
     - restart circus
