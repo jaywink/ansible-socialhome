@@ -54,11 +54,7 @@
   become_user: "{{ socialhome_os_user }}"
 
 - name: Webpack
-  command: chdir=/home/{{ socialhome_os_user }}/socialhome npm run dev
-  become_user: "{{ socialhome_os_user }}"
-
-- name: Grunt things
-  command: chdir=/home/{{ socialhome_os_user }}/socialhome ./node_modules/.bin/grunt build
+  command: chdir=/home/{{ socialhome_os_user }}/socialhome npm run build
   become_user: "{{ socialhome_os_user }}"
 
 - name: Collect statics
