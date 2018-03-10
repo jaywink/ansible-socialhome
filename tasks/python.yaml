@@ -6,5 +6,5 @@
   pip: name={{ item }} state=latest virtualenv=/home/{{ socialhome_os_user }}/venv
   with_items:
     - pip
-    - setuptools==30.4
+    - setuptools
     - pip-tools
