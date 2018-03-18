@@ -52,3 +52,9 @@ socialhome_syslog_level: INFO
 socialhome_loggly: false
 socialhome_loggly_token:
 socialhome_syslog_facility: local7
+
+# Sentry
+# Set DSN here to activate sentry reporting
+socialhome_sentry_dsn:
+# Set to either DEBUG, INFO, WARNING, ERROR
+socialhome_sentry_level: ERROR
