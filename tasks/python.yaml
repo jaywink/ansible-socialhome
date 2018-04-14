@@ -5,6 +5,7 @@
 - name: Update pip, setuptools and pip-tools
   pip: name={{ item }} state=latest virtualenv=/home/{{ socialhome_os_user }}/venv
   with_items:
-    - pip
+    # pip 10 breaks pip-tools for now, see https://github.com/jazzband/pip-tools/issues/648
+    - pip<10
     - setuptools
     - pip-tools
