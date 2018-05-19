@@ -3,3 +3,13 @@
   template: dest=/etc/init/{{ socialhome_domain }}-circus.conf src=circus_upstart.conf
   notify:
     - restart circus
+  when: not _systemd
+
+- name: Set up circus systemd service
+  template: dest=/etc/systemd/system/{{ socialhome_domain }}-circus.service src=circus_systemd.service
+  notify:
+    - restart circus
+  when: _systemd
+
+- name: Reload systemd daemon
+  systemd: daemon_reload=yes

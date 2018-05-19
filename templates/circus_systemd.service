@@ -1,0 +1,20 @@
+[Unit]
+Description={{ socialhome_domain }} service
+After=syslog.target network.target
+
+[Service]
+Environment=DJANGO_SETTINGS_MODULE="config.settings.production"
+Environment=PYTHONPATH="/home/{{ socialhome_os_user }}/socialhome"
+Environment=SOCIALHOME_HOME="/home/{{ socialhome_os_user }}"
+Environment=RQWORKER_NUM={{ socialhome_rq_workers }}
+Environment=VIRTUAL_ENV=/home/{{ socialhome_os_user }}/venv
+
+User={{ socialhome_os_user }}
+Group={{ socialhome_os_user }}
+
+WorkingDirectory=/home/{{ socialhome_os_user }}/socialhome
+ExecStart=/home/{{ socialhome_os_user }}/venv/bin/circusd /home/{{ socialhome_os_user }}/socialhome/config/circus.ini
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
