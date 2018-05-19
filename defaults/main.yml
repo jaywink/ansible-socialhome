@@ -2,6 +2,7 @@
 socialhome_admin_name:
 socialhome_admin_mail:
 socialhome_daphne_port: 23564
+socialhome_db_install_postgres: true
 socialhome_db_host: 127.0.0.1
 socialhome_db_name: socialhome
 socialhome_db_password: socialhome

@@ -5,7 +5,7 @@ Ansible role - Socialhome
 
 Deploy [Socialhome](https://github.com/jaywink/socialhome) using Ansible.
 
-Role will also install Apache2 with a LetsEncrypt SSL certificate and a PostgreSQL database.
+Role will also install Apache2 with a LetsEncrypt SSL certificate and by default a PostgreSQL database (this can be disabled).
 
 Requirements
 ------------
@@ -47,6 +47,11 @@ The following are required to use the role and have no (sane) defaults.
     socialhome_email_host_user:
     socialhome_email_host_password:
     socialhome_email_from: "noreply@socialhome.local"
+
+Disabling Postgres database installation
+----------------------------------------
+
+To instead use an existing postgresql database, define the variable `socialhome_db_install_postgres: false` and postgres install will be skipped.
 
 Dependencies
 ------------

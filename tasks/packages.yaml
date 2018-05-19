@@ -11,8 +11,6 @@
     - gettext
     # Postgresql
     - libpq-dev
-    - postgresql-9.3
-    - python-psycopg2
     # Apache
     - apache2
     # uWSGI
@@ -23,3 +21,10 @@
     - python3-setuptools
     # Redis
     - redis-server
+
+- name: Install postgres
+  apt: name={{ item }} state=present
+  with_items:
+    - postgresql-9.3
+    - python-psycopg2
+  when: socialhome_db_install_postgres

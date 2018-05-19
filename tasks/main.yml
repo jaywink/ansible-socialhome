@@ -4,6 +4,7 @@
 - include: uwsgi.yaml
 - include: apache.yaml
 - include: postgresql.yaml
+  when: socialhome_db_install_postgres
 - include: python.yaml
   become_user: "{{ socialhome_os_user }}"
 - include: circus.yaml
