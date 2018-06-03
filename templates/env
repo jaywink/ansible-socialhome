@@ -60,3 +60,5 @@ SOCIALHOME_STATISTICS=True
 SENTRY_DSN={{ socialhome_sentry_dsn }}
 SENTRY_LEVEL={{ socialhome_sentry_level }}
 {% endif %}
+
+DJANGO_TIMEZONE={{ socialhome_timezone }}
