@@ -62,3 +62,7 @@ SENTRY_LEVEL={{ socialhome_sentry_level }}
 {% endif %}
 
 DJANGO_TIMEZONE={{ socialhome_timezone }}
+
+{% if socialhome_tos_jurisdiction %}
+SOCIALHOME_TOS_JURISDICTION={{ socialhome_tos_jurisdiction }}
+{% endif %}

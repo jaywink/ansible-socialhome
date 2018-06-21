@@ -18,6 +18,7 @@ socialhome_repo_version: master
 socialhome_root_profile:
 socialhome_rq_workers: 5
 socialhome_timezone: UTC
+socialhome_tos_jurisdiction:
 socialhome_secret_key:
 socialhome_uwsgi_address: 127.0.0.1:31452/
 
