@@ -46,7 +46,7 @@
 
 # Web stuff
 - name: Do NPM install
-  npm: path=/home/{{ socialhome_os_user }}/socialhome state=latest
+  npm: path=/home/{{ socialhome_os_user }}/socialhome state=present
   become_user: "{{ socialhome_os_user }}"
 
 - name: Do bowering
