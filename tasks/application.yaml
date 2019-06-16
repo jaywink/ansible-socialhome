@@ -45,7 +45,11 @@
   when: not _whoosh.stat.exists
 
 # Web stuff
-- name: Do NPM install
+- name: Do NPM install for root package json
+  npm: path=/home/{{ socialhome_os_user }}/socialhome state=present
+  become_user: "{{ socialhome_os_user }}"
+
+- name: Do NPM install for frontend
   npm: path=/home/{{ socialhome_os_user }}/socialhome state=present
   become_user: "{{ socialhome_os_user }}"
 
