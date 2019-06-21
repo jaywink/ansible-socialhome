@@ -50,7 +50,7 @@
   become_user: "{{ socialhome_os_user }}"
 
 - name: Do NPM install for frontend
-  npm: path=/home/{{ socialhome_os_user }}/socialhome state=present
+  npm: path=/home/{{ socialhome_os_user }}/socialhome/socialhome/frontend state=present
   become_user: "{{ socialhome_os_user }}"
 
 - name: Do bowering
