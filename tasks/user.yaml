@@ -1,6 +1,6 @@
 ---
 - name: Socialhome user
-  user: name="{{ socialhome_os_user }}" state=present
+  user: name="{{ socialhome_os_user }}" state=present shell="/bin/bash"
 - name: Ensure www-data member of socialhome user group
   user: name=www-data append=yes groups="{{ socialhome_os_user }}" state=present
 - name: Make socialhome user home non-world readable
