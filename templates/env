@@ -66,3 +66,7 @@ DJANGO_TIMEZONE={{ socialhome_timezone }}
 {% if socialhome_tos_jurisdiction %}
 SOCIALHOME_TOS_JURISDICTION={{ socialhome_tos_jurisdiction }}
 {% endif %}
+
+{% if socialhome_activitypub_alpha is defined %}
+SOCIALHOME_ACTIVITYPUB_ALPHA={{ socialhome_activitypub_alpha }}
+{% endif %}
