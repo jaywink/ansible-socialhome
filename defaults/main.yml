@@ -61,3 +61,6 @@ socialhome_syslog_facility: local7
 socialhome_sentry_dsn:
 # Set to either DEBUG, INFO, WARNING, ERROR
 socialhome_sentry_level: ERROR
+
+# Streams
+socialhome_streams_precache_inactive_days: 30
