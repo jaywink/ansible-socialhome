@@ -64,3 +64,6 @@ socialhome_sentry_level: ERROR
 
 # Streams
 socialhome_streams_precache_inactive_days: 30
+
+# Django-Silk
+socialhome_silky: false

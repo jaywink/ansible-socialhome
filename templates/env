@@ -68,3 +68,7 @@ SOCIALHOME_TOS_JURISDICTION={{ socialhome_tos_jurisdiction }}
 {% endif %}
 
 SOCIALHOME_STREAMS_PRECACHE_INACTIVE_DAYS={{ socialhome_streams_precache_inactive_days }}
+
+{% if socialhome_silky %}
+SOCIALHOME_SILKY=True
+{% endif %}
