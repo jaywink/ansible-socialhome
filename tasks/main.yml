@@ -1,6 +1,8 @@
 ---
 - set_fact:
     _systemd: "{{ true if ansible_lsb.major_release >= 15 else false }}"
+  tags:
+    - circus
 
 - include: packages.yaml
 - include: user.yaml
@@ -11,9 +13,15 @@
 - include: python.yaml
   become_user: "{{ socialhome_os_user }}"
 - include: circus.yaml
+  tags:
+    - circus
 - include: application.yaml
   environment:
     DJANGO_SETTINGS_MODULE: config.settings.production
+  tags:
+    - app
 - include: circus_ini.yaml
+  tags:
+    - app
 - include: loggly.yaml
   when: socialhome_loggly and socialhome_log_target == "syslog"
