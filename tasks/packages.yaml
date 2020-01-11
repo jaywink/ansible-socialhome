@@ -1,32 +1,16 @@
 ---
 - name: Ensure locales are set (LANGUAGE)
-  lineinfile: line='LANGUAGE="en_US.UTF-8"' dest=/etc/default/locale state=present
+  lineinfile: line='LANGUAGE="{{ socialhome_locales }}"' dest=/etc/default/locale state=present
 - name: Ensure locales are set (LC_ALL)
-  lineinfile: line='LC_ALL="en_US.UTF-8"' dest=/etc/default/locale state=present
+  lineinfile: line='LC_ALL="{{ socialhome_locales }}"' dest=/etc/default/locale state=present
 
 - name: System dependencies
-  apt: name={{ item }} state=present update_cache=yes cache_valid_time=86400
-  with_items:
-    - git
-    - gettext
-    # Postgresql
-    - libpq-dev
-    # Apache
-    - apache2
-    # uWSGI
-    - build-essential
-    - python-dev
-    - python3-dev
-    # Virtualenv
-    - virtualenv
-    - python-virtualenv
-    - python3-setuptools
-    # Redis
-    - redis-server
+  apt:
+    name: {{ socialhome_system_dependencies }}
+    state: present
+    update_cache: yes
+    cache_valid_time: 86400
 
 - name: Install postgres
-  apt: name={{ item }} state=present
-  with_items:
-    - postgresql-9.3
-    - python-psycopg2
+  apt: name={{ socialhome_postgres_dependencies }} state=present
   when: socialhome_db_install_postgres
