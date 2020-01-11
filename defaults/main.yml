@@ -67,3 +67,30 @@ socialhome_streams_precache_inactive_days: 30
 
 # Django-Silk
 socialhome_silky: false
+
+# Dependencies
+socialhome_system_dependencies:
+  - git
+  - gettext
+  # Postgresql
+  - libpq-dev
+  # Apache
+  - apache2
+  # uWSGI
+  - build-essential
+  - python-dev
+  - python3-dev
+  # Virtualenv
+  - virtualenv
+  - python-virtualenv
+  - python3-setuptools
+  # Redis
+  - redis-server
+
+socialhome_postgres_version: 10
+socialhome_postgres_dependencies:
+  - "postgresql-{{ socialhome_postgres_version }}"
+  - python-psycopg2
+
+# Locales:
+socialhome_locales: en_US.UTF-8
