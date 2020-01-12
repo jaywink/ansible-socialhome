@@ -6,7 +6,7 @@
 
 - name: System dependencies
   apt:
-    name: {{ socialhome_system_dependencies }}
+    name: "{{ socialhome_system_dependencies }}"
     state: present
     update_cache: yes
     cache_valid_time: 86400
