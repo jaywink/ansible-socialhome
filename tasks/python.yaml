@@ -1,7 +1,10 @@
 ---
 - name: Update pip, setuptools and pip-tools
-  pip: name={{ item }} state=latest virtualenv=/home/{{ socialhome_os_user }}/venv virtualenv_python=python3
-  with_items:
+  pip:
+    name:
     - pip
     - setuptools
     - pip-tools
+    state: latest
+    virtualenv: "/home/{{ socialhome_os_user }}/venv"
+    virtualenv_python: python3
