@@ -91,6 +91,7 @@ socialhome_postgres_version: 10
 socialhome_postgres_dependencies:
   - "postgresql-{{ socialhome_postgres_version }}"
   - python-psycopg2
+  - python3-psycopg2  # Support for Python 3 interpreter
 
 # Locales:
 socialhome_locales: en_US.UTF-8
