@@ -72,3 +72,7 @@ SOCIALHOME_STREAMS_PRECACHE_INACTIVE_DAYS={{ socialhome_streams_precache_inactiv
 {% if socialhome_silky %}
 SOCIALHOME_SILKY=True
 {% endif %}
+
+{% if socialhome_log_disable_admin_emails %}
+SOCIALHOME_LOG_DISABLE_ADMIN_EMAILS=True
+{% endif %}

@@ -44,6 +44,7 @@ socialhome_email_from: "noreply@socialhome.local"
 socialhome_statistics: true
 
 # Logging
+socialhome_log_disable_admin_emails: false
 # Set to either file or syslog
 socialhome_log_target: file
 # Only used if above is syslog
