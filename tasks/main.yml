@@ -1,6 +1,6 @@
 ---
 - set_fact:
-    _systemd: "{{ true if ansible_lsb.major_release >= 15 else false }}"
+    _systemd: "{{ true if ansible_lsb.major_release >= '15' else false }}"
   tags:
     - circus
 
