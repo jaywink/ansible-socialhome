@@ -76,3 +76,7 @@ SOCIALHOME_SILKY=True
 {% if socialhome_log_disable_admin_emails %}
 SOCIALHOME_LOG_DISABLE_ADMIN_EMAILS=True
 {% endif %}
+
+{% if socialhome_matrix_enabled %}
+SOCIALHOME_MATRIX_ENABLED=True
+{% endif %}

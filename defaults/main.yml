@@ -96,3 +96,6 @@ socialhome_postgres_dependencies:
 
 # Locales:
 socialhome_locales: en_US.UTF-8
+
+# Matrix support
+socialhome_matrix_enabled: false
