@@ -80,4 +80,5 @@ SOCIALHOME_LOG_DISABLE_ADMIN_EMAILS=True
 {% if socialhome_matrix_enabled %}
 SOCIALHOME_MATRIX_ENABLED=True
 SOCIALHOME_MATRIX_APPSERVICE_TOKEN={{ socialhome_matrix_appservice_token }}
+SOCIALHOME_MATRIX_APPSERVICE_ID={{ socialhome_matrix_appservice_id }}
 {% endif %}
