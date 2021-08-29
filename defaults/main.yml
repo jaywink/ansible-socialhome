@@ -101,3 +101,6 @@ socialhome_locales: en_US.UTF-8
 socialhome_matrix_enabled: false
 socialhome_matrix_appservice_token:
 socialhome_matrix_appservice_id: socialhome
+
+# NodeJS
+nodejs_version: "10.x"
