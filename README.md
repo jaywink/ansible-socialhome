@@ -1,9 +1,7 @@
-[![Stories in Ready](https://badge.waffle.io/jaywink/ansible-socialhome.png?label=ready&title=Ready)](https://waffle.io/jaywink/ansible-socialhome)
-
 Ansible role - Socialhome
 =========================
 
-Deploy [Socialhome](https://git.feneas.org/socialhome/socialhome) using Ansible.
+Deploy [Socialhome](https://gitlab.com/jaywink/socialhome) using Ansible.
 
 Role will also install Apache2 with a LetsEncrypt SSL certificate and by default a PostgreSQL database (this can be disabled).
 
@@ -68,7 +66,7 @@ If you don't disable HTTPS (which you shouldn't!), you MUST set valid `ansible-l
     letsencrypt_request_www: false
     letsencrypt_force_renew: false
 
-See full list [here](https://git.feneas.org/jaywink/ansible-letsencrypt).
+See full list [here](https://github.com/jaywink/ansible-letsencrypt).
 
 Example Playbook
 ----------------

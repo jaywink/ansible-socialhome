@@ -13,7 +13,7 @@ socialhome_domain: socialhome.local
 socialhome_https: true
 socialhome_os_user: socialhome
 socialhome_redis_db: 0
-socialhome_repo: https://git.feneas.org/socialhome/socialhome.git
+socialhome_repo: https://gitlab.com/jaywink/socialhome.git
 socialhome_repo_version: master
 socialhome_root_profile:
 socialhome_rq_workers: 5
