@@ -9,7 +9,6 @@ galaxy_info:
     - activitypub
     - diaspora
     - socialmedia
-  galaxy_info:
-    role_name: socialhome
+  role_name: socialhome
 
 dependencies: []
