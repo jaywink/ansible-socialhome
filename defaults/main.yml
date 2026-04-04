@@ -1,0 +1,96 @@
+---
+## REQUIRED
+#socialhome_domain: socialhome.local
+#socialhome_db_host: 127.0.0.1
+#socialhome_db_name: socialhome
+#socialhome_db_password: socialhome
+#socialhome_db_user: socialhome
+#socialhome_secret_key: foobar
+
+## OPTIONAL
+socialhome_user: socialhome
+socialhome_path: /opt/socialhome
+socialhome_docker_image: codeberg.org/socialhome/socialhome:0.23.0
+socialhome_ui_version: "0.12.0"
+socialhome_log_max_size: "100m"
+socialhome_docker_network: socialhome
+
+# These can be disabled if not using Traefik.
+# Note! Assumes Traefik 2.x version.
+socialhome_docker_labels_app:
+  traefik.enable: "true"
+  traefik.http.routers.socialhome-app.rule: "Host(`{{ socialhome_domain }}`) && (PathPrefix(`/ch`, `/receive`, `/admin`, `/api`, `/django-rq`, `/fetch`, `/hcard`, `/jsi18n`, `/nodeinfo`, `/static`, `/webfinger`, `/.well-known`) || HeadersRegexp(`Accept`, `.*application/((activity|ld)\\+)?json.*`) || HeadersRegexp(`Accept`, `.*application/(xrd\\+|magic-envelope\\+)xml.*`))"
+  traefik.http.routers.socialhome-app.entrypoints: "websecure"
+  traefik.http.routers.socialhome-app.tls.certresolver: "letsencrypt"
+  traefik.http.services.socialhome-app.loadbalancer.server.port: "23564"
+  traefik.http.middlewares.socialhome-app.headers.customrequestheaders.X-Forwarded-Proto: https
+socialhome_docker_labels_nginx:
+  traefik.enable: "true"
+  traefik.http.routers.socialhome-nginx.rule: "Host(`{{ socialhome_domain }}`)"
+  traefik.http.routers.socialhome-nginx.entrypoints: "websecure"
+  traefik.http.routers.socialhome-nginx.tls.certresolver: "letsencrypt"
+  traefik.http.services.socialhome-nginx.loadbalancer.server.port: "80"
+
+# Contact details for the site admin
+socialhome_admin_name:
+socialhome_admin_mail:
+
+# Database
+socialhome_db_port: 5432
+
+socialhome_disable_registrations: true
+socialhome_root_profile:
+
+# Resource tuning
+socialhome_daphne_workers: 2
+socialhome_rq_workers: 5
+
+socialhome_timezone: UTC
+socialhome_tos_jurisdiction:
+
+
+# Warning! Don't activate in production!
+socialhome_debug: false
+
+# Maintenance override to show a maintenance status
+socialhome_maintenance: false
+
+# Email
+# Set backend to "smtp" for smtp emails - currently only one supported
+# If not set to "smtp", emails will just print in console
+# Mails use TLS by default
+socialhome_email_backend:
+socialhome_email_host: localhost
+socialhome_email_port: 587
+socialhome_email_host_user:
+socialhome_email_host_password:
+socialhome_email_from: "noreply@socialhome.local"
+
+# Statistics
+socialhome_statistics: true
+
+# Logging
+socialhome_log_disable_admin_emails: false
+# Set to either DEBUG, INFO, WARNING, ERROR
+socialhome_log_level: INFO
+
+# Sentry
+# Set DSN here to activate sentry reporting
+socialhome_sentry_dsn:
+# Set to either DEBUG, INFO, WARNING, ERROR
+socialhome_sentry_level: ERROR
+
+# Streams
+socialhome_streams_precache_inactive_days: 30
+socialhome_streams_public_stream_without_auth: false
+
+# Django-Silk
+socialhome_silky: false
+
+# Matrix support
+socialhome_matrix_enabled: false
+socialhome_matrix_appservice_token:
+socialhome_matrix_appservice_id: socialhome
+
+# Redis
+socialhome_redis_host: socialhome-redis

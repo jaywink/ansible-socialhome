@@ -1,0 +1,88 @@
+DATABASE_URL=postgres://{{ socialhome_db_user }}:{{ socialhome_db_password }}@{{ socialhome_db_host }}:{{ socialhome_db_port }}/{{ socialhome_db_name }}
+
+DJANGO_SETTINGS_MODULE=config.settings.production
+DJANGO_SECRET_KEY={{ socialhome_secret_key }}
+DJANGO_ALLOWED_HOSTS=.{{ socialhome_domain }},{{ socialhome_user }}-app
+DJANGO_SERVER_EMAIL=
+
+{% if socialhome_disable_registrations is defined %}
+DJANGO_ACCOUNT_ALLOW_REGISTRATION={{ socialhome_disable_registrations | ternary('False', 'True') }}
+{% endif %}
+{% if socialhome_account_signup_require_admin_approval | default(false) %}
+ACCOUNT_SIGNUP_REQUIRE_ADMIN_APPROVAL=True
+{% endif %}
+
+SOCIALHOME_DOMAIN={{ socialhome_domain }}
+
+{% if socialhome_admin_name %}
+DJANGO_ADMIN_NAME={{ socialhome_admin_name }}
+{% endif %}
+{% if socialhome_admin_mail %}
+DJANGO_ADMIN_MAIL={{ socialhome_admin_mail }}
+{% endif %}
+
+{% if socialhome_root_profile %}
+SOCIALHOME_ROOT_PROFILE={{ socialhome_root_profile }}
+{% endif %}
+
+SOCIALHOME_LOG_TARGET=console
+SOCIALHOME_LOG_LEVEL={{ socialhome_log_level }}
+
+{% if socialhome_debug %}
+DJANGO_DEBUG=True
+{% endif %}
+
+{% if socialhome_email_backend == "smtp" %}
+DJANGO_EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
+DJANGO_EMAIL_HOST={{ socialhome_email_host }}
+DJANGO_EMAIL_PORT={{ socialhome_email_port }}
+DJANGO_EMAIL_HOST_USER={{ socialhome_email_host_user }}
+DJANGO_EMAIL_HOST_PASSWORD={{ socialhome_email_host_password }}
+DJANGO_DEFAULT_FROM_EMAIL={{ socialhome_email_from }}
+{% endif %}
+
+{% if socialhome_statistics %}
+SOCIALHOME_STATISTICS=True
+{% endif %}
+
+{% if socialhome_sentry_dsn %}
+SENTRY_DSN={{ socialhome_sentry_dsn }}
+SENTRY_LEVEL={{ socialhome_sentry_level }}
+{% endif %}
+
+DJANGO_TIMEZONE={{ socialhome_timezone }}
+
+{% if socialhome_tos_jurisdiction %}
+SOCIALHOME_TOS_JURISDICTION={{ socialhome_tos_jurisdiction }}
+{% endif %}
+
+SOCIALHOME_STREAMS_PRECACHE_INACTIVE_DAYS={{ socialhome_streams_precache_inactive_days }}
+{% if socialhome_streams_public_stream_without_auth %}
+SOCIALHOME_STREAMS_PUBLIC_STREAM_WITHOUT_AUTH=True
+{% endif %}
+
+{% if socialhome_silky %}
+SOCIALHOME_SILKY=True
+{% endif %}
+
+{% if socialhome_log_disable_admin_emails %}
+SOCIALHOME_LOG_DISABLE_ADMIN_EMAILS=True
+{% endif %}
+
+{% if socialhome_matrix_enabled %}
+SOCIALHOME_MATRIX_ENABLED=True
+SOCIALHOME_MATRIX_APPSERVICE_TOKEN={{ socialhome_matrix_appservice_token }}
+SOCIALHOME_MATRIX_APPSERVICE_ID={{ socialhome_matrix_appservice_id }}
+{% endif %}
+
+REDIS_HOST={{ socialhome_redis_host }}
+
+RQWORKER_NUM={{ socialhome_rq_workers }}
+DAPHNE_WORKER_NUM={{ socialhome_daphne_workers }}
+
+{% if socialhome_federation_user is defined %}
+FEDERATION_USER={{ socialhome_federation_user }}
+{% endif %}
+
+SOCIALHOME_METRICS=False
+PROMETHEUS_MULTIPROC_DIR=/tmp/socialhome-metrics

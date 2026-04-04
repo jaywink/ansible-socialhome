@@ -1,0 +1,108 @@
+---
+- name: Ensure user
+  user:
+    name: "{{ socialhome_user }}"
+
+- name: Ensure media path
+  file:
+    path: "{{ socialhome_path }}/media"
+    state: directory
+
+- name: Ensure var path
+  file:
+    path: "{{ socialhome_path }}/var"
+    state: directory
+
+- name: Ensure ui path
+  file:
+    path: "{{ socialhome_path }}/ui"
+    state: directory
+
+- name: Download SPA UI
+  ansible.builtin.unarchive:
+    src: https://codeberg.org/api/packages/socialhome/generic/socialhome-ui/{{ socialhome_ui_version }}/socialhome-ui.tgz
+    dest: "{{ socialhome_path }}/ui"
+    remote_src: yes
+  register: _spa_ui
+  tags:
+    - app
+
+- name: Set maintenance page
+  when: socialhome_maintenance
+  ansible.builtin.template:
+    src: maintenance.html
+    dest: "{{ socialhome_path }}/ui/dist/index.html"
+  tags:
+    - app
+
+- name: Template env
+  template:
+    src: env
+    dest: "{{ socialhome_path }}/env"
+  register: _env
+  tags:
+    - app
+
+- name: Template nginx config
+  ansible.builtin.template:
+    dest: "{{ socialhome_path }}/nginx.conf"
+    owner: "{{ socialhome_user }}"
+    group: "{{ socialhome_user }}"
+    src: nginx.conf
+  tags:
+    - app
+
+- name: Socialhome container
+  when: not socialhome_maintenance
+  community.docker.docker_container:
+    state: started
+    name: "{{ socialhome_user }}-app"
+    image: "{{ socialhome_docker_image }}"
+    restart_policy: on-failure
+    restart: "{{ _env.changed or _spa_ui.changed }}"
+    volumes:
+      - "{{ socialhome_path }}/media:/app/socialhome/media:rw"
+      - "{{ socialhome_path }}/var:/app/var:rw"
+      - "{{ socialhome_path }}/ui/dist/index.html:/app/socialhome/templates/index.html:ro"
+    env_file: "{{ socialhome_path }}/env"
+    log_driver: json-file
+    log_options:
+      max-size: "{{ socialhome_log_max_size }}"
+    networks:
+      - name: "{{ socialhome_docker_network }}"
+    labels: "{{ socialhome_docker_labels_app | default(omit) }}"
+  tags:
+    - app
+
+- name: NGINX container
+  community.docker.docker_container:
+    state: started
+    name: "{{ socialhome_user }}-nginx"
+    image: "nginx:1.21.6"
+    restart_policy: on-failure
+    volumes:
+      - "{{ socialhome_path }}/nginx.conf:/etc/nginx/conf.d/socialhome.conf:ro"
+      - "{{ socialhome_path }}/media:/usr/share/nginx/html/media:ro"
+      - "{{ socialhome_path }}/ui/dist/assets:/usr/share/nginx/html/assets:ro"
+      - "{{ socialhome_path }}/ui/dist/index.html:/usr/share/nginx/html/index.html:ro"
+      - "{{ socialhome_path }}/ui/dist/favicon.ico:/usr/share/nginx/html/favicon.ico:ro"
+    log_driver: json-file
+    log_options:
+      max-size: "{{ socialhome_log_max_size }}"
+    networks:
+      - name: "{{ socialhome_docker_network }}"
+    labels: "{{ socialhome_docker_labels_nginx | default(omit) }}"
+  tags:
+    - app
+
+- name: Redis container
+  community.docker.docker_container:
+    state: started
+    name: "{{ socialhome_user }}-redis"
+    image: "redis:7.0.0"
+    restart_policy: on-failure
+    log_driver: json-file
+    log_options:
+      max-size: "{{ socialhome_log_max_size }}"
+    networks:
+      - name: "{{ socialhome_docker_network }}"
