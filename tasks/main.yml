@@ -59,7 +59,7 @@
     name: "{{ socialhome_user }}-app"
     image: "{{ socialhome_docker_image }}"
     restart_policy: on-failure
-    restart: "{{ _env.changed or _spa_ui.changed }}"
+    restart: "{{ _env.changed }}"
     volumes:
       - "{{ socialhome_path }}/media:/app/socialhome/media:rw"
       - "{{ socialhome_path }}/var:/app/var:rw"
@@ -80,6 +80,7 @@
     name: "{{ socialhome_user }}-nginx"
     image: "nginx:1.21.6"
     restart_policy: on-failure
+    restart: "{{ _spa_ui.changed }}"
     volumes:
       - "{{ socialhome_path }}/nginx.conf:/etc/nginx/conf.d/socialhome.conf:ro"
       - "{{ socialhome_path }}/media:/usr/share/nginx/html/media:ro"
