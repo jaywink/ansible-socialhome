@@ -79,6 +79,12 @@ REDIS_HOST={{ socialhome_redis_host }}
 
 RQWORKER_NUM={{ socialhome_rq_workers }}
 DAPHNE_WORKER_NUM={{ socialhome_daphne_workers }}
+{% if socialhome_dramatiq_nprocs is defined %}
+DRAMATIQ_NPROCS={{ socialhome_dramatiq_nprocs }}
+{% endif %}
+{% if socialhome_dramatiq_nthreads is defined %}
+DRAMATIQ_NTHREADS={{ socialhome_dramatiq_nthreads }}
+{% endif %}
 
 {% if socialhome_federation_user is defined %}
 FEDERATION_USER={{ socialhome_federation_user }}
@@ -86,3 +92,17 @@ FEDERATION_USER={{ socialhome_federation_user }}
 
 SOCIALHOME_METRICS=False
 PROMETHEUS_MULTIPROC_DIR=/tmp/socialhome-metrics
+
+{% if socialhome_reply_collections_refetch_enabled %}
+{% if socialhome_reply_collections_fetch_until_days is defined %}
+SOCIALHOME_REPLY_COLLECTIONS_FETCH_UNTIL_DAYS={{ socialhome_reply_collections_fetch_until_days }}
+{% endif %}
+{% if socialhome_reply_collections_delay_by_factoris is defined %}
+SOCIALHOME_REPLY_COLLECTIONS_DELAY_BY_FACTOR={{ socialhome_reply_collections_delay_by_factoris }}
+{% endif %}
+{% if socialhome_reply_collections_initial_refetch_minutes is defined %}
+SOCIALHOME_REPLY_COLLECTIONS_INITIAL_REFETCH_MINUTES={{ socialhome_reply_collections_initial_refetch_minutes }}
+{% endif %}
+{% else %}
+SOCIALHOME_REPLY_COLLECTIONS_REFETCH_ENABLED=False
+{% endif %}

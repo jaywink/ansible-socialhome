@@ -44,10 +44,19 @@ socialhome_root_profile:
 # Resource tuning
 socialhome_daphne_workers: 2
 socialhome_rq_workers: 5
+# Defaults to amount of vcpu
+#socialhome_dramatiq_nprocs:
+# Defaults to 8 currently in Dramatiq
+#socialhome_dramatiq_nthreads
+
+# Feature tweaks
+socialhome_reply_collections_refetch_enabled: true
+#socialhome_reply_collections_fetch_until_days:
+#socialhome_reply_collections_delay_by_factoris:
+#socialhome_reply_collections_initial_refetch_minutes:
 
 socialhome_timezone: UTC
 socialhome_tos_jurisdiction:
-
 
 # Warning! Don't activate in production!
 socialhome_debug: false
