@@ -97,8 +97,8 @@ PROMETHEUS_MULTIPROC_DIR=/tmp/socialhome-metrics
 {% if socialhome_reply_collections_fetch_until_days is defined %}
 SOCIALHOME_REPLY_COLLECTIONS_FETCH_UNTIL_DAYS={{ socialhome_reply_collections_fetch_until_days }}
 {% endif %}
-{% if socialhome_reply_collections_delay_by_factoris is defined %}
-SOCIALHOME_REPLY_COLLECTIONS_DELAY_BY_FACTOR={{ socialhome_reply_collections_delay_by_factoris }}
+{% if socialhome_reply_collections_delay_by_factor is defined %}
+SOCIALHOME_REPLY_COLLECTIONS_DELAY_BY_FACTOR={{ socialhome_reply_collections_delay_by_factor }}
 {% endif %}
 {% if socialhome_reply_collections_initial_refetch_minutes is defined %}
 SOCIALHOME_REPLY_COLLECTIONS_INITIAL_REFETCH_MINUTES={{ socialhome_reply_collections_initial_refetch_minutes }}

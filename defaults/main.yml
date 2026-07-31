@@ -52,7 +52,7 @@ socialhome_rq_workers: 5
 # Feature tweaks
 socialhome_reply_collections_refetch_enabled: true
 #socialhome_reply_collections_fetch_until_days:
-#socialhome_reply_collections_delay_by_factoris:
+#socialhome_reply_collections_delay_by_factor:
 #socialhome_reply_collections_initial_refetch_minutes:
 
 socialhome_timezone: UTC
