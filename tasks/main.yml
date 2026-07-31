@@ -60,10 +60,10 @@
     image: "{{ socialhome_docker_image }}"
     restart_policy: on-failure
     restart: "{{ _env.changed }}"
+    recreate: "{{ _env.changed }}"
     volumes:
       - "{{ socialhome_path }}/media:/app/socialhome/media:rw"
       - "{{ socialhome_path }}/var:/app/var:rw"
-      - "{{ socialhome_path }}/ui/dist/index.html:/app/socialhome/templates/index.html:ro"
     env_file: "{{ socialhome_path }}/env"
     log_driver: json-file
     log_options:
