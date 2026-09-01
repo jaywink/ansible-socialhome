@@ -19,7 +19,7 @@ socialhome_docker_network: socialhome
 # Note! Assumes Traefik 2.x version.
 socialhome_docker_labels_app:
   traefik.enable: "true"
-  traefik.http.routers.socialhome-app.rule: "Host(`{{ socialhome_domain }}`) && (PathPrefix(`/ch`, `/receive`, `/admin`, `/api`, `/django-rq`, `/fetch`, `/hcard`, `/jsi18n`, `/nodeinfo`, `/static`, `/webfinger`, `/.well-known`) || HeadersRegexp(`Accept`, `.*application/((activity|ld)\\+)?json.*`) || HeadersRegexp(`Accept`, `.*application/(xrd\\+|magic-envelope\\+)xml.*`))"
+  traefik.http.routers.socialhome-app.rule: "Host(`{{ socialhome_domain }}`) && (PathPrefix(`/ch`, `/receive`, `/admin`, `/api`, `/fetch`, `/hcard`, `/jsi18n`, `/nodeinfo`, `/static`, `/webfinger`, `/.well-known`) || HeadersRegexp(`Accept`, `.*application/((activity|ld)\\+)?json.*`) || HeadersRegexp(`Accept`, `.*application/(xrd\\+|magic-envelope\\+)xml.*`))"
   traefik.http.routers.socialhome-app.entrypoints: "websecure"
   traefik.http.routers.socialhome-app.tls.certresolver: "letsencrypt"
   traefik.http.services.socialhome-app.loadbalancer.server.port: "23564"
@@ -43,7 +43,6 @@ socialhome_root_profile:
 
 # Resource tuning
 socialhome_daphne_workers: 2
-socialhome_rq_workers: 5
 # Defaults to amount of vcpu
 #socialhome_dramatiq_nprocs:
 # Defaults to 8 currently in Dramatiq

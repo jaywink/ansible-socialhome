@@ -77,7 +77,6 @@ SOCIALHOME_MATRIX_APPSERVICE_ID={{ socialhome_matrix_appservice_id }}
 
 REDIS_HOST={{ socialhome_redis_host }}
 
-RQWORKER_NUM={{ socialhome_rq_workers }}
 DAPHNE_WORKER_NUM={{ socialhome_daphne_workers }}
 {% if socialhome_dramatiq_nprocs is defined %}
 DRAMATIQ_NPROCS={{ socialhome_dramatiq_nprocs }}
